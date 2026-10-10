@@ -9,7 +9,12 @@ import {
 } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { ROLE_LABELS, StaffRole, TEACHER_VIEW_ROLES } from "@/lib/staff";
+import {
+  REFERRAL_VIEW_ROLES,
+  ROLE_LABELS,
+  StaffRole,
+  TEACHER_VIEW_ROLES,
+} from "@/lib/staff";
 
 export type Staff = { id: string; full_name: string; role: StaffRole };
 
@@ -137,6 +142,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }
 
   const canSeeTeachers = TEACHER_VIEW_ROLES.includes(staff.role);
+  const canSeeReferrals = REFERRAL_VIEW_ROLES.includes(staff.role);
 
   return (
     <StaffContext.Provider value={staff}>
@@ -160,6 +166,11 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             <Link href="/jobs" className="hover:text-white">
               Tin tuyển dụng
             </Link>
+            {canSeeReferrals && (
+              <Link href="/referrals" className="hover:text-white">
+                Giới thiệu
+              </Link>
+            )}
           </nav>
           <div className="flex items-center gap-4">
             <span>

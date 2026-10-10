@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useStaff } from "@/components/AdminShell";
+import TeacherReferrals from "@/components/TeacherReferrals";
 import {
   INTERNAL_LABELS,
   INTERNAL_ORDER,
@@ -269,6 +270,7 @@ export default function TeacherDetail({ id }: { id: string }) {
           )}
         </section>
       </div>
+      <TeacherReferrals teacherId={teacher.id} />
     </div>
   );
 }

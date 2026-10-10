@@ -128,3 +128,57 @@ export function isLiveOnWeb(j: {
   const today = new Date().toISOString().slice(0, 10);
   return j.deadline >= today;
 }
+
+// ---- Giới thiệu giáo viên cho nhà trường
+export const REFERRAL_VIEW_ROLES: StaffRole[] = [
+  "recruitment",
+  "coordination",
+  "sales",
+  "accounting",
+  "director",
+  "it",
+];
+
+export const REFERRAL_EDIT_ROLES: StaffRole[] = [
+  "recruitment",
+  "coordination",
+  "director",
+  "it",
+];
+
+export type ReferralStatus =
+  | "proposed"
+  | "sent"
+  | "interview"
+  | "offered"
+  | "accepted"
+  | "rejected"
+  | "withdrawn";
+
+export const REFERRAL_LABELS: Record<ReferralStatus, string> = {
+  proposed: "Đề xuất (chưa gửi)",
+  sent: "Đã gửi hồ sơ cho trường",
+  interview: "Trường mời phỏng vấn",
+  offered: "Trường đề nghị nhận",
+  accepted: "Đã nhận việc",
+  rejected: "Trường không nhận",
+  withdrawn: "Giáo viên rút lui",
+};
+
+export const REFERRAL_COLORS: Record<ReferralStatus, string> = {
+  proposed: "bg-slate-100 text-slate-700",
+  sent: "bg-blue-100 text-blue-800",
+  interview: "bg-purple-100 text-purple-800",
+  offered: "bg-amber-100 text-amber-800",
+  accepted: "bg-green-200 text-green-900",
+  rejected: "bg-rose-100 text-rose-800",
+  withdrawn: "bg-slate-200 text-slate-700",
+};
+
+export const REFERRAL_ORDER = Object.keys(REFERRAL_LABELS) as ReferralStatus[];
+
+// Supabase có thể trả về 1 đối tượng hoặc mảng 1 phần tử cho quan hệ nhiều-1
+export function one<T>(x: T | T[] | null | undefined): T | null {
+  if (Array.isArray(x)) return x[0] ?? null;
+  return x ?? null;
+}
