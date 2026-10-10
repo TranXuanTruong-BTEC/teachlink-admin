@@ -208,3 +208,8 @@ export function formatVnd(n: number | string | null | undefined) {
   const v = Number(n ?? 0);
   return `${v.toLocaleString("vi-VN")} ₫`;
 }
+
+// ---- Quản lý tài khoản nhân viên (Ban giám đốc và IT)
+export const STAFF_ADMIN_ROLES: StaffRole[] = ["director", "it"];
+
+export const ROLE_ORDER = Object.keys(ROLE_LABELS) as StaffRole[];

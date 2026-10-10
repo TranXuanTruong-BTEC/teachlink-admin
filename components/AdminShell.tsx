@@ -11,6 +11,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import {
   FEE_ROLES,
+  STAFF_ADMIN_ROLES,
   REFERRAL_VIEW_ROLES,
   ROLE_LABELS,
   StaffRole,
@@ -145,6 +146,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const canSeeTeachers = TEACHER_VIEW_ROLES.includes(staff.role);
   const canSeeReferrals = REFERRAL_VIEW_ROLES.includes(staff.role);
   const canSeeFees = FEE_ROLES.includes(staff.role);
+  const canManageStaff = STAFF_ADMIN_ROLES.includes(staff.role);
 
   return (
     <StaffContext.Provider value={staff}>
@@ -176,6 +178,11 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             {canSeeFees && (
               <Link href="/fees" className="hover:text-white">
                 Phí môi giới
+              </Link>
+            )}
+            {canManageStaff && (
+              <Link href="/staff" className="hover:text-white">
+                Nhân viên
               </Link>
             )}
           </nav>
