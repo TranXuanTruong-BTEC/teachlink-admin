@@ -157,6 +157,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             <Link href="/schools" className="hover:text-white">
               Nhà trường
             </Link>
+            <Link href="/jobs" className="hover:text-white">
+              Tin tuyển dụng
+            </Link>
           </nav>
           <div className="flex items-center gap-4">
             <span>

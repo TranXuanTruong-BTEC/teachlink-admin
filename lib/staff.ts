@@ -91,3 +91,40 @@ export const SCHOOL_EDIT_ROLES: StaffRole[] = [
   "director",
   "it",
 ];
+
+// Phòng ban được thêm/sửa tin tuyển dụng (Marketing được đăng tin)
+export const JOB_EDIT_ROLES: StaffRole[] = [
+  "marketing",
+  "sales",
+  "coordination",
+  "director",
+  "it",
+];
+
+export type JobStatus = "draft" | "open" | "closed" | "filled";
+
+export const JOB_STATUS_LABELS: Record<JobStatus, string> = {
+  draft: "Nháp",
+  open: "Đang tuyển",
+  closed: "Đã đóng",
+  filled: "Đã đủ người",
+};
+
+export const JOB_STATUS_COLORS: Record<JobStatus, string> = {
+  draft: "bg-slate-100 text-slate-700",
+  open: "bg-emerald-100 text-emerald-800",
+  closed: "bg-slate-200 text-slate-700",
+  filled: "bg-blue-100 text-blue-800",
+};
+
+// Tin có hiện trên website công khai không?
+export function isLiveOnWeb(j: {
+  is_published: boolean;
+  status: string;
+  deadline: string | null;
+}) {
+  if (!j.is_published || j.status !== "open") return false;
+  if (!j.deadline) return true;
+  const today = new Date().toISOString().slice(0, 10);
+  return j.deadline >= today;
+}

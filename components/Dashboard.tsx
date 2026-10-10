@@ -119,8 +119,12 @@ export default function Dashboard() {
         </section>
       ) : (
         <p className="mt-8 rounded-lg border border-dashed border-slate-300 bg-white p-6 text-sm text-slate-600">
-          Phòng ban của bạn không xem hồ sơ giáo viên. Các chức năng quản lý tin
-          tuyển dụng sẽ được bổ sung ở bước tiếp theo.
+          Phòng ban của bạn không xem hồ sơ giáo viên. Bạn có thể quản lý và đăng
+          tin ở mục{" "}
+          <Link href="/jobs" className="font-medium text-blue-700 hover:underline">
+            Tin tuyển dụng
+          </Link>
+          .
         </p>
       )}
     </div>
