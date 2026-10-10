@@ -182,3 +182,29 @@ export function one<T>(x: T | T[] | null | undefined): T | null {
   if (Array.isArray(x)) return x[0] ?? null;
   return x ?? null;
 }
+
+// ---- Phí môi giới (chỉ Kinh doanh, Kế toán, Ban giám đốc)
+export const FEE_ROLES: StaffRole[] = ["sales", "accounting", "director"];
+
+export type FeeStatus = "pending" | "invoiced" | "paid" | "cancelled";
+
+export const FEE_LABELS: Record<FeeStatus, string> = {
+  pending: "Chờ xuất hóa đơn",
+  invoiced: "Đã xuất hóa đơn",
+  paid: "Đã thu tiền",
+  cancelled: "Đã hủy",
+};
+
+export const FEE_COLORS: Record<FeeStatus, string> = {
+  pending: "bg-amber-100 text-amber-800",
+  invoiced: "bg-blue-100 text-blue-800",
+  paid: "bg-green-200 text-green-900",
+  cancelled: "bg-slate-200 text-slate-700",
+};
+
+export const FEE_ORDER = Object.keys(FEE_LABELS) as FeeStatus[];
+
+export function formatVnd(n: number | string | null | undefined) {
+  const v = Number(n ?? 0);
+  return `${v.toLocaleString("vi-VN")} ₫`;
+}

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useStaff } from "@/components/AdminShell";
+import ReferralFee from "@/components/ReferralFee";
 import {
   REFERRAL_EDIT_ROLES,
   REFERRAL_LABELS,
@@ -237,6 +238,7 @@ export default function ReferralDetail({ id }: { id: string }) {
           </p>
         )}
       </section>
+      <ReferralFee referralId={d.id} referralStatus={d.status} />
     </div>
   );
 }

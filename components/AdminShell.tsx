@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import {
+  FEE_ROLES,
   REFERRAL_VIEW_ROLES,
   ROLE_LABELS,
   StaffRole,
@@ -143,6 +144,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
   const canSeeTeachers = TEACHER_VIEW_ROLES.includes(staff.role);
   const canSeeReferrals = REFERRAL_VIEW_ROLES.includes(staff.role);
+  const canSeeFees = FEE_ROLES.includes(staff.role);
 
   return (
     <StaffContext.Provider value={staff}>
@@ -169,6 +171,11 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             {canSeeReferrals && (
               <Link href="/referrals" className="hover:text-white">
                 Giới thiệu
+              </Link>
+            )}
+            {canSeeFees && (
+              <Link href="/fees" className="hover:text-white">
+                Phí môi giới
               </Link>
             )}
           </nav>
